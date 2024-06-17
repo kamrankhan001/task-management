@@ -14,7 +14,7 @@ const search = ref('');
                     class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
                 >
                     <img
-                        src="/resources/js/assets/icons/search.svg"
+                        src="/public/assets/icons/search.svg"
                         alt="show icon"
                         class="w-5 h-5"
                     />

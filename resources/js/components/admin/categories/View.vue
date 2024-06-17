@@ -48,7 +48,7 @@ const showModal = () => {
                 @click="showModal"
             >
                 <img
-                    src="/resources/js/assets/icons/show.svg"
+                    src="/public/assets/icons/show.svg"
                     alt="show icon"
                     class="w-5 h-4"
                 />

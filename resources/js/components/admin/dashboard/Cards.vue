@@ -49,7 +49,7 @@ onMounted(fetchRecord);
                     </div>
                     <div>
                         <img
-                            src="/resources/js/assets/icons/employees.svg"
+                            src="/public/assets/icons/employees.svg"
                             alt="employee icon"
                             class="w-12 h-12"
                         />
@@ -74,7 +74,7 @@ onMounted(fetchRecord);
                     </div>
                     <div>
                         <img
-                            src="/resources/js/assets/icons/category.svg"
+                            src="/public/assets/icons/category.svg"
                             alt="category icon"
                             class="w-12 h-12"
                         />
@@ -99,7 +99,7 @@ onMounted(fetchRecord);
                     </div>
                     <div>
                         <img
-                            src="/resources/js/assets/icons/group.svg"
+                            src="/public/assets/icons/group.svg"
                             alt="group icon"
                             class="w-12 h-12"
                         />
@@ -124,7 +124,7 @@ onMounted(fetchRecord);
                     </div>
                     <div>
                         <img
-                            src="/resources/js/assets/icons/task.svg"
+                            src="/public/assets/icons/task.svg"
                             alt="task icon"
                             class="w-12 h-12"
                         />

@@ -45,7 +45,7 @@ const distroyRecord = async () => {
                 @click="showModal"
             >
                 <img
-                    src="/resources/js/assets/icons/delete.svg"
+                    src="/public/assets/icons/delete.svg"
                     alt="show icon"
                     class="w-5 h-4"
                 />

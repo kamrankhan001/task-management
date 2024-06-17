@@ -30,7 +30,7 @@ onMounted(() => {
                     </p>
                 </div>
                 <div>
-                    <img src="/resources//js/assets/icons/complete.svg" style="width: 45px; height: 45px;">
+                    <img src="/public/assets/icons/complete.svg" style="width: 45px; height: 45px;">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@ onMounted(() => {
                     </p>
                 </div>
                 <div>
-                    <img src="/resources//js/assets/icons/waiting.svg" style="width: 45px; height: 45px;">
+                    <img src="/public/assets/icons/waiting.svg" style="width: 45px; height: 45px;">
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@ onMounted(() => {
                     </p>
                 </div>
                 <div>
-                    <img src="/resources//js/assets/icons/individual.svg" style="width: 45px; height: 45px;">
+                    <img src="/public/assets/icons/individual.svg" style="width: 45px; height: 45px;">
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@ onMounted(() => {
                     </p>
                 </div>
                 <div>
-                    <img src="/resources//js/assets/icons/group.svg" style="width: 45px; height: 45px;">
+                    <img src="/public/assets/icons/group.svg" style="width: 45px; height: 45px;">
                 </div>
             </div>
         </div>

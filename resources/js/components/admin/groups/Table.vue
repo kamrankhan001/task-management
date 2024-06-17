@@ -19,6 +19,7 @@ const records = ref({});
 const currentPage = ref(1);
 const links = ref([]);
 const query = ref("");
+const loading = ref(true);
 
 const fetchRecords = async (page, qry) => {
     currentPage.value = page;
@@ -32,6 +33,8 @@ const fetchRecords = async (page, qry) => {
     } catch (error) {
         toast.error("Failed to fetch group");
         console.error("Failed to fetch group", error)
+    }finally {
+        loading.value = false;
     }
 };
 
@@ -57,7 +60,7 @@ onMounted(() => {
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center" aria-current="page">
                     <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white uppercase">
-                        <img src="/resources/js/assets/icons/group.svg" alt="group icon" class="w-4 h-4" />
+                        <img src="/public/assets/icons/group.svg" alt="group icon" class="w-4 h-4" />
                         Groups
                     </a>
                 </li>
@@ -72,6 +75,7 @@ onMounted(() => {
                 </div>
 
                 <div class="overflow-x-auto">
+                    <div v-if="loading" class="text-center">Loading...</div>
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" v-if="records?.data?.length > 0">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -97,7 +101,7 @@ onMounted(() => {
                             </tr>
                         </tbody>
                     </table>
-                    <div v-else class="my-10 text-center text-xl">
+                    <div v-if="records?.data?.length <= 0" class="my-10 text-center text-xl">
                         No Group Found
                     </div>
                 </div>
@@ -111,7 +115,7 @@ onMounted(() => {
                         <li>
                             <button class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" :class="records.links.prev ? '' : 'cursor-not-allowed'" :disabled="records.links.prev ? false : true" @click="fetchRecords(currentPage - 1, query)">
                                 <span class="sr-only">Previous</span>
-                                <img src="/resources/js/assets/icons/pagePrev.svg" alt="prev icon" class="w-5 h-5" />
+                                <img src="/public/assets/icons/pagePrev.svg" alt="prev icon" class="w-5 h-5" />
                             </button>
                         </li>
                         <li v-for="link in links" :key="link.label">
@@ -122,7 +126,7 @@ onMounted(() => {
                         <li>
                             <button class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" :class="records.links.next ? '' : 'cursor-not-allowed'" :disabled="records.links.next ? false : true" @click="fetchRecords(currentPage + 1, query)">
                                 <span class="sr-only">Next</span>
-                                <img src="/resources/js/assets/icons/pageNext.svg" alt="next icon" class="w-5 h-5" />
+                                <img src="/public/assets/icons/pageNext.svg" alt="next icon" class="w-5 h-5" />
                             </button>
                         </li>
                     </ul>

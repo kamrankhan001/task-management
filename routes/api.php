@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TaskController;
-use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\GroupController;
 
 use App\Http\Controllers\EmployeeTaskController;
@@ -31,9 +30,6 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function(){
 
     // Task Routes
     Route::resource('tasks', TaskController::class)->except('create', 'edit');
-
-    // Comment Routes
-    Route::resource('comments', CommentController::class)->except('create', 'edit');
 
     // Group Routes
     Route::resource('groups', GroupController::class)->except('create', 'edit');

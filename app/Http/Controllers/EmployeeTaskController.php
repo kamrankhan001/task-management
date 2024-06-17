@@ -45,7 +45,15 @@ class EmployeeTaskController extends Controller
 
         $tasks = $individualTasks->merge($groupTasks);
 
-        return response()->json($tasks);
+        $completedTasks = $tasks->where('status', 'complete')->values();
+        $reviewTasks = $tasks->where('status', 'review')->values();
+        $pendingTasks = $tasks->where('status', 'pending')->values();
+
+        return response()->json([
+            'completed' => $completedTasks,
+            'review' => $reviewTasks,
+            'pending' => $pendingTasks,
+        ]);
     }
 
     public function markTaskAsComplete($taskId)

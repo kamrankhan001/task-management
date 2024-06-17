@@ -2,11 +2,13 @@
 import useSingleRecord from "../../../composables/admin/single.js";
 import useUpdateRecord from "../../../composables/admin/update.js";
 
-import { ref, reactive, onMounted, inject } from "vue";
-import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { ref, reactive, onMounted, inject, defineAsyncComponent } from "vue";
 import { FwbInput, FwbButton } from "flowbite-vue";
 import { useToast } from "vue-toastification";
+
+const ChangePassword = defineAsyncComponent(() =>
+    import("./PasswordChange.vue")
+);
 
 const props = defineProps(["id"]);
 const user = inject("user");
@@ -23,43 +25,33 @@ const formFields = reactive({
     email: "",
 });
 
-const rules = {
-    name: { required },
-    email: { required, email },
-};
-
-const v$ = useVuelidate(rules, formFields);
-
 const fetchRecord = async () => {
     record.value = await singleRecord();
-    formFields.name = record.value.name;
-    formFields.email = record.value.email;
+    formFields.name = record.value.data.name;
+    formFields.email = record.value.data.email;
 };
 
 const updateProfile = async () => {
-    const validateResult = await v$.value.$validate();
-    if (validateResult) {
-        try {
-            const response = await updateRecord(formFields);
-            if (response.success) {
-                user.value.name = formFields.name;
-                user.value.email = formFields.email;
+    try {
+        const response = await updateRecord(formFields);
+        if (response.success) {
+            user.value.name = formFields.name;
+            user.value.email = formFields.email;
 
-                toast.success("Profile Updated Successfully");
+            toast.success("Profile Updated Successfully");
 
-                let oldData = localStorage.getItem("user");
-                if (oldData) {
-                    oldData = JSON.parse(oldData);
+            let oldData = localStorage.getItem("user");
+            if (oldData) {
+                oldData = JSON.parse(oldData);
 
-                    oldData.name = user.value.name;
-                    oldData.email = user.value.email;
+                oldData.name = user.value.name;
+                oldData.email = user.value.email;
 
-                    localStorage.setItem("user", JSON.stringify(oldData));
-                }
+                localStorage.setItem("user", JSON.stringify(oldData));
             }
-        } catch (error) {
-            errors.value = error.message;
         }
+    } catch (error) {
+        errors.value = error.message;
     }
 };
 
@@ -70,9 +62,6 @@ onMounted(() => {
 
 <template>
     <div>
-        <div class="mb-5">
-            <h4 class="text-xl">Profile</h4>
-        </div>
         <form @submit.prevent="updateProfile">
             <div class="mb-5">
                 <fwb-input
@@ -80,10 +69,6 @@ onMounted(() => {
                     placeholder="Enter your name"
                     label="Name"
                 />
-                <span v-if="v$.name.$error" class="text-red-600">
-                    Name
-                    {{ v$.name.$errors[0] ? v$.name.$errors[0].$message : "" }}
-                </span>
                 <span v-if="errors.name" class="text-red-600">{{
                     errors.name[0]
                 }}</span>
@@ -95,12 +80,6 @@ onMounted(() => {
                     label="Email"
                     type="email"
                 />
-                <span v-if="v$.email.$error" class="text-red-600">
-                    Email
-                    {{
-                        v$.email.$errors[0] ? v$.email.$errors[0].$message : ""
-                    }}
-                </span>
                 <span v-if="errors.email" class="text-red-600">{{
                     errors.email[0]
                 }}</span>
@@ -109,5 +88,8 @@ onMounted(() => {
                 <fwb-button color="purple" type="submit">Save</fwb-button>
             </div>
         </form>
+        <div class="mt-5 text-center">
+            <ChangePassword :id="props.id"/>
+        </div>
     </div>
 </template>

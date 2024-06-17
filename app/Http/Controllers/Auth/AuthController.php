@@ -47,10 +47,22 @@ class AuthController extends Controller
     public function resetPassword(Request $request, $id)
     {
         try {
-            $request->validate([
-                'oldPassword' => 'required|string',
+            $rules = [
+                'oldPassword' => 'required|string|current_password',
                 'password' => 'required|string|confirmed|min:8',
-            ]);
+            ];
+
+            $messages = [
+                'oldPassword.required' => 'Please enter your current password.',
+                'oldPassword.string' => 'Current password must be a text string.',
+                'oldPassword.current_password' => 'Incorrect current password. Please try again.',
+                'password.required' => 'Please enter a new password.',
+                'password.string' => 'New password must be a text string.',
+                'password.confirmed' => 'New passwords do not match. Please re-enter.',
+                'password.min' => 'New password must be at least :min characters long.',
+            ];
+
+            $request->validate($rules, $messages);
 
             $user = User::findOrFail($id);
 

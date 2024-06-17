@@ -43,7 +43,7 @@ const destroyRecord = async () => {
                 @click="showModal"
             >
                 <img
-                    src="/resources/js/assets/icons/delete.svg"
+                    src="/public/assets/icons/delete.svg"
                     alt="delete icon"
                     class="w-5 h-4"
                 />

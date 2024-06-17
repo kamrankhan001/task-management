@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        <div class="my-20 w-[1536px] mx-auto h-[90vh]">
+        <div class="my-20 mx-auto">
             <Table />
         </div>
     </div>

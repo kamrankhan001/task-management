@@ -1,8 +1,9 @@
 <script setup>
-import { initCollapses, initDropdowns } from "flowbite";
 import { RouterLink } from "vue-router";
 import { onBeforeMount, watch, onMounted, inject } from "vue";
 import { useRoute } from "vue-router";
+import { initFlowbite } from "flowbite";
+
 
 const route = useRoute();
 const user = inject('user');
@@ -12,8 +13,7 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-    initCollapses();
-    initDropdowns();
+    initFlowbite();
 });
 
 watch(route, () => {
@@ -23,7 +23,7 @@ watch(route, () => {
 
 <template>
     <nav
-        class="fixed top-0 z-40 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-0 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 z-40"
     >
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
@@ -36,16 +36,34 @@ watch(route, () => {
                         class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     >
                         <span class="sr-only">Open sidebar</span>
-                        <img
-                            src="../assets/icons/humburger.svg"
-                            alt="humburder icon"
-                        />
+                        <svg
+                            class="w-6 h-6"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                clip-rule="evenodd"
+                                fill-rule="evenodd"
+                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                            ></path>
+                        </svg>
                     </button>
-                    <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                        <p
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-red-700 text-center"
-                            >Vision <span class="block text-sm font-normal">Marketing & Production</span></p>
-                    </a>
+                    <RouterLink
+                        :to="{ name: 'employeeDashboard' }"
+                        class="flex ms-2 md:me-24"
+                    >
+                        <img
+                            src="/public/assets/images/oop.jpeg"
+                            class="h-8 me-3 rounded-full"
+                            alt="OOP Logo"
+                        />
+                        <span
+                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
+                            >The OOP</span
+                        >
+                    </RouterLink>
                 </div>
                 <div class="flex items-center">
                     <div class="flex items-center ms-3">
@@ -59,7 +77,7 @@ watch(route, () => {
                                 <span class="sr-only">Open user menu</span>
                                 <img
                                     class="w-8 h-8 rounded-full"
-                                    src="/public/images/vision.png"
+                                    src="/public/assets/images/oop.jpeg"
                                     alt="Company logo"
                                 />
                             </button>
@@ -91,7 +109,7 @@ watch(route, () => {
                                     >
                                         <div class="flex gap-2">
                                             <img
-                                                src="../assets/icons/profile.svg"
+                                                src="/public/assets/icons/profile.svg"
                                                 alt="humburder icon"
                                                 class="w-5 h-5"
                                             />
@@ -107,7 +125,7 @@ watch(route, () => {
                                     >
                                         <div class="flex gap-2">
                                             <img
-                                                src="../assets/icons/signout.svg"
+                                                src="/public/assets/icons/signout.svg"
                                                 alt="humburder icon"
                                                 class="w-5 h-5"
                                             />
@@ -125,8 +143,9 @@ watch(route, () => {
 
     <aside
         id="logo-sidebar"
-        class="fixed top-0 left-0 z-30 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-0 left-0 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar"
+        style="z-index: 39;"
     >
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
@@ -136,7 +155,7 @@ watch(route, () => {
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                         <img
-                            src="../assets/icons/dashboard.svg"
+                            src="/public/assets/icons/dashboard.svg"
                             alt="dashboard icon"
                             class="w-5 h-5"
                         />
@@ -149,7 +168,7 @@ watch(route, () => {
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                         <img
-                            src="../assets/icons/task.svg"
+                            src="/public/assets/icons/task.svg"
                             alt="task icon"
                             class="w-5 h-5"
                         />
@@ -162,7 +181,7 @@ watch(route, () => {
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                         <img
-                            src="../assets/icons/category.svg"
+                            src="/public/assets/icons/category.svg"
                             alt="category icon"
                             class="w-5 h-5"
                         />
@@ -177,7 +196,7 @@ watch(route, () => {
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                         <img
-                            src="../assets/icons/employees.svg"
+                            src="/public/assets/icons/employees.svg"
                             alt="employyees icon"
                             class="w-5 h-5"
                         />
@@ -192,7 +211,7 @@ watch(route, () => {
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                         <img
-                            src="../assets/icons/group.svg"
+                            src="/public/assets/icons/group.svg"
                             alt="group icon"
                             class="w-5 h-5"
                         />
@@ -207,7 +226,7 @@ watch(route, () => {
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                         <img
-                            src="../assets/icons/profile.svg"
+                            src="/public/assets/icons/profile.svg"
                             alt="group icon"
                             class="w-5 h-5"
                         />
@@ -222,7 +241,7 @@ watch(route, () => {
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                     >
                         <img
-                            src="../assets/icons/signout.svg"
+                            src="/public/assets/icons/signout.svg"
                             alt="signout icon"
                             class="w-5 h-5"
                         />

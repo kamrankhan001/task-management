@@ -21,12 +21,10 @@ class TaskRequest extends FormRequest
      */
     public function rules(): array
     {
-        $taskId = $this->route('id');
-
         return [
-            'title' => 'required|string|max:200|unique:tasks,title,' . $taskId,
+            'title' => 'required|string|max:200|unique:tasks,title,' . $this->route('task'),
             'description' => 'nullable|string',
-            'due_date' => 'required|date|after:today',
+            'due_date' => 'required|date|after_or_equal:today',
             'priority' => 'in:high,medium,low',
             'status' => 'in:pending,review,complete',
             'category_id' => 'required|exists:categories,id',

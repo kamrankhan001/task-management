@@ -55,7 +55,7 @@ function showModal() {
         <div class="text-right">
             <fwb-button color="purple" @click="showModal" size="xs">
                 <img
-                    src="/resources/js/assets/icons/pluse.svg"
+                    src="/public/assets/icons/pluse.svg"
                     alt="plus icon"
                     class="w-5 h-5"
                 />

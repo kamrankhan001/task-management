@@ -81,7 +81,7 @@ function showModal() {
                 @click="showModal"
             >
                 <img
-                    src="/resources/js/assets/icons/edit.svg"
+                    src="/public/assets/icons/edit.svg"
                     alt="show icon"
                     class="w-5 h-4"
                 />

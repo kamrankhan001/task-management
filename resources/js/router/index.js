@@ -10,21 +10,21 @@ const routes = [
         path: '/employees/dashboard',
         name: 'employeeDashboard',
         component: () => import('../pages/employees/DashboardView.vue'),
-        meta: {layout: 'user', title: 'Dashboard'},
+        meta: {layout: 'user', title: 'The OOP - Dashboard'},
         beforeEnter: useAuthGuard,
     },
     {
         path: '/employees/tasks',
         name: 'employeeTask',
         component: () => import('../pages/employees/TasksView.vue'),
-        meta: {layout: 'user', title: 'Tasks'},
+        meta: {layout: 'user', title: 'The OOP - Tasks'},
         beforeEnter: useAuthGuard,
     },
     {
         path: '/employees/groups',
         name: 'employeeGroups',
         component: () => import('../pages/employees/GroupsView.vue'),
-        meta: {layout: 'user', title: 'Groups'},
+        meta: {layout: 'user', title: 'The OOP - Groups'},
         beforeEnter: useAuthGuard,
     },
 
@@ -34,42 +34,42 @@ const routes = [
         name: 'adminDashboard',
         component: () => import('../pages/admin/DashboardView.vue'),
         beforeEnter: [useAuthGuard, useAdminGuard],
-        meta: {layout: 'admin', title: 'Dashboard'}
+        meta: {layout: 'admin', title: 'The OOP - Dashboard'}
     },
     {
         path: '/admin/employees',
         name: 'adminUsers',
         component: () => import('../pages/admin/EmpolyeesView.vue'),
         beforeEnter: [useAuthGuard, useAdminGuard],
-        meta: {layout: 'admin', title: 'Employees'}
+        meta: {layout: 'admin', title: 'The OOP - Employees'}
     },
     {
         path: '/admin/categories',
         name: 'adminCategories',
         component: () => import('../pages/admin/CategoryView.vue'),
         beforeEnter: [useAuthGuard, useAdminGuard],
-        meta: {layout: 'admin', title: 'Categories'}
+        meta: {layout: 'admin', title: 'The OOP - Categories'}
     },
     {
         path: '/admin/tasks',
         name: 'adminTasks',
         component: () => import('../pages/admin/TaskView.vue'),
         beforeEnter: [useAuthGuard, useAdminGuard],
-        meta: {layout: 'admin', title: 'Tasks'}
+        meta: {layout: 'admin', title: 'The OOP - Tasks'}
     },
     {
         path: '/admin/groups',
         name: 'adminGroup',
         component: () => import('../pages/admin/GroupView.vue'),
         beforeEnter: [useAuthGuard, useAdminGuard],
-        meta: {layout: 'admin', title: 'Group'}
+        meta: {layout: 'admin', title: 'The OOP - Group'}
     },
     {
         path: '/admin/profile/:id',
         name: 'adminProfile',
         component: () => import('../pages/admin/ProfileView.vue'),
         beforeEnter: [useAuthGuard, useAdminGuard],
-        meta: {layout: 'admin', title: 'Profile'}
+        meta: {layout: 'admin', title: 'The OOP - Profile'}
     },
 
     // Auth Routes

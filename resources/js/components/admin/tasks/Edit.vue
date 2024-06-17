@@ -129,6 +129,7 @@ const editRecord = async () => {
     } catch (error) {
         if (error.errors) {
             errors.value = error.errors;
+            console.log(errors.value)
         } else {
             toast.error("Error updating task");
             console.error("Error updating task:", error);
@@ -171,7 +172,7 @@ const showModal = () => {
                 @click="showModal"
             >
                 <img
-                    src="/resources/js/assets/icons/edit.svg"
+                    src="/public/assets/icons/edit.svg"
                     alt="edit icon"
                     class="w-5 h-4"
                 />
@@ -191,7 +192,7 @@ const showModal = () => {
                                         v-model="formFields.title"
                                         required
                                     />
-                                    <span v-if="errors.title" class="text-red-600">{{ errors.value.title[0] }}</span>
+                                    <span v-if="errors?.title" class="text-red-600">{{ errors.title[0] }}</span>
                                 </div>
                                 <div class="mb-5">
                                     <fwb-input
@@ -202,7 +203,7 @@ const showModal = () => {
                                         :min="minDate"
                                         required
                                     />
-                                    <span v-if="errors.due_date" class="text-red-600">{{ errors.value.due_date[0] }}</span>
+                                    <span v-if="errors?.due_date" class="text-red-600">{{ errors.due_date[0] }}</span>
                                 </div>
                                 <div class="mb-5">
                                     <fwb-select
@@ -210,7 +211,7 @@ const showModal = () => {
                                         :options="statusOptions"
                                         label="Status"
                                     />
-                                    <span v-if="errors.status" class="text-red-600">{{ errors.value.status[0] }}</span>
+                                    <span v-if="errors?.status" class="text-red-600">{{ errors.status[0] }}</span>
                                 </div>
                             </div>
                             <div>
@@ -220,7 +221,7 @@ const showModal = () => {
                                         :options="categories"
                                         label="Category *"
                                     />
-                                    <span v-if="errors.category_id" class="text-red-600">{{ errors.category_id[0] }}</span>
+                                    <span v-if="errors?.category_id" class="text-red-600">{{ errors.category_id[0] }}</span>
                                 </div>
                                 <div class="mb-5">
                                     <fwb-select
@@ -228,7 +229,7 @@ const showModal = () => {
                                         :options="priorities"
                                         label="Priority"
                                     />
-                                    <span v-if="errors.priority" class="text-red-600">{{ errors.priority[0] }}</span>
+                                    <span v-if="errors?.priority" class="text-red-600">{{ errors.priority[0] }}</span>
                                 </div>
                                 <div class="mb-5">
                                     <label for="assign" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assign to</label>
@@ -258,7 +259,7 @@ const showModal = () => {
                                     label="Description"
                                     v-model="formFields.description"
                                 />
-                                <span v-if="errors.description" class="text-red-600">{{ errors.value.description[0] }}</span>
+                                <span v-if="errors?.description" class="text-red-600">{{ errors.description[0] }}</span>
                             </div>
                         </div>
                     </form>

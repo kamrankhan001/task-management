@@ -19,6 +19,14 @@ const records = ref({});
 const currentPage = ref(1);
 const links = ref([]);
 const query = ref("");
+const loading = ref(true);
+
+const truncateText = (text, maxLength = 50) => {
+    if (!text) return "";
+    return text.length > maxLength
+        ? text.substring(0, maxLength) + "..."
+        : text;
+};
 
 const fetchRecords = async (page, qry) => {
     currentPage.value = page;
@@ -28,9 +36,14 @@ const fetchRecords = async (page, qry) => {
     try {
         const data = await allRecord(page, qry);
         records.value = data;
-        links.value = records.value.meta.links.filter((link, index) => index !== 0 && index !== records.value.meta.links.length - 1);
+        links.value = records.value.meta.links.filter(
+            (link, index) =>
+                index !== 0 && index !== records.value.meta.links.length - 1
+        );
     } catch (error) {
         toast.error("Failed to fetch records");
+    } finally {
+        loading.value = false;
     }
 };
 
@@ -62,7 +75,7 @@ onMounted(() => {
                         class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white uppercase"
                     >
                         <img
-                            src="/resources/js/assets/icons/task.svg"
+                            src="/public/assets/icons/task.svg"
                             alt="task icon"
                             class="w-4 h-4"
                         />
@@ -71,7 +84,6 @@ onMounted(() => {
                 </li>
             </ol>
         </nav>
-
         <div class="px-4 lg:px-12">
             <div
                 class="bg-white dark:bg-gray-800 relative sm:rounded-lg overflow-hidden"
@@ -84,6 +96,7 @@ onMounted(() => {
                 </div>
 
                 <div class="overflow-x-auto">
+                    <div v-if="loading" class="text-center">Loading...</div>
                     <table
                         class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
                         v-if="records?.data?.length > 0"
@@ -114,10 +127,10 @@ onMounted(() => {
                                     scope="row"
                                     class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white capitalize"
                                 >
-                                    {{ record.title }}
+                                    {{ truncateText(record.title) }}
                                 </th>
                                 <td class="px-4 py-3 capitalize">
-                                    {{ record.description }}
+                                    {{ truncateText(record.description) }}
                                 </td>
                                 <td class="px-4 py-3">{{ record.due_date }}</td>
                                 <td class="px-4 py-3">
@@ -174,7 +187,7 @@ onMounted(() => {
                             </tr>
                         </tbody>
                     </table>
-                    <div v-else class="my-10 text-center text-xl">
+                    <div  v-if="records?.data?.length <= 0" class="my-10 text-center text-xl">
                         No Task Found
                     </div>
                 </div>
@@ -212,7 +225,11 @@ onMounted(() => {
                                 @click="fetchRecords(currentPage - 1, query)"
                             >
                                 <span class="sr-only">Previous</span>
-                              <img src="/resources/js/assets/icons/pagePrev.svg" alt="prev icon" class="w-5 h-5">
+                                <img
+                                    src="/public/assets/icons/pagePrev.svg"
+                                    alt="prev icon"
+                                    class="w-5 h-5"
+                                />
                             </button>
                         </li>
 
@@ -242,7 +259,11 @@ onMounted(() => {
                                 @click="fetchRecords(currentPage + 1, query)"
                             >
                                 <span class="sr-only">Next</span>
-                                <img src="/resources/js/assets/icons/pageNext.svg" alt="next icon" class="w-5 h-5">
+                                <img
+                                    src="/public/assets/icons/pageNext.svg"
+                                    alt="next icon"
+                                    class="w-5 h-5"
+                                />
                             </button>
                         </li>
                     </ul>
