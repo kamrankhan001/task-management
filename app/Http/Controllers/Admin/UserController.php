@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use App\Jobs\SendEmployeeCreatedEmail;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -45,6 +46,8 @@ class UserController extends Controller
 
             $user = User::create($data);
 
+            SendEmployeeCreatedEmail::dispatch($user);
+            
             Cache::flush();
             
             return response()->json(['success' => 'User created successfully', 'user' => new UserResource($user)], 201);

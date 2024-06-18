@@ -71,7 +71,7 @@ const showModal = () => {
                     </div>
                     <div class="mb-2 text-left">
                         <h3 class="font-semibold">Employees</h3>
-                        <div class="max-h-52 overflow-scroll">
+                        <div class="max-h-52 overflow-auto">
                             <p class="py-2 px-1" v-for="user in record.users" :key="user.id">
                                 {{ user.name }}
                             </p>

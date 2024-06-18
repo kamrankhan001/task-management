@@ -16,7 +16,7 @@ class ManagerSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Company Name',
-            'email' => 'companymanager@gmail.com',
+            'email' => 'manager@theoop.com',
             'password' => Hash::make('managerpassword'),
             'is_admin' => true,
             'created_at' => now(),

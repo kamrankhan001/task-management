@@ -310,6 +310,13 @@
                                         </span>
 
                                     </p>
+                                    <p class="flex justify-between border-slate-500">
+                                        <span class="block">Completed Date</span>
+                                        <span class="block px-2 py-1 rounded capitalize">
+                                            {{ task.updated_at }}
+                                        </span>
+
+                                    </p>
                                 </div>
                             </div>
                         </div>

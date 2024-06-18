@@ -77,7 +77,7 @@ const routes = [
         path: '/',
         name: 'login',
         component: () => import('../pages/auth/LoginView.vue'),
-        meta: {layout: 'default', title: 'Login'}
+        meta: {layout: 'default', title: 'The OOP - Login'}
     },
     {
         path: '/logout',
@@ -85,6 +85,14 @@ const routes = [
         component: () => import('../pages/auth/LogoutView.vue'),
         meta: {layout: 'default'},
         beforeEnter: useAuthGuard,
+    },
+
+    // 404
+    { 
+        path: '/:pathMatch(.*)*', 
+        name: 'NotFound', 
+        component: () => import('../pages/NotFound.vue'),
+        meta: {layout: 'default', title: 'The OOP - Not Found'}
     },
 ]
 

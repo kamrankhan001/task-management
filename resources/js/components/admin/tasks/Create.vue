@@ -243,7 +243,7 @@ const showModal = () => {
                                 <fwb-select
                                     v-model="formFields.user_id"
                                     :options="individuals"
-                                    label="User"
+                                    label="Employees"
                                 />
                             </div>
                             <div

@@ -13,6 +13,6 @@ export default function useAdminGuard() {
     }
 
     if (!token || !user || !user.is_admin) {
-        router.push({ name: "employeeTask" });
+        router.push({ name: "NotFound"});
     }
 }

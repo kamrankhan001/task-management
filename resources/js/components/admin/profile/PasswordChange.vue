@@ -71,6 +71,7 @@ const showModal = () => {
                       v-model="formFields.oldPassword"
                       type="password"
                       placeholder="Old Password"
+                      required
                   />
                   <span v-if="errors.oldPassword" class="text-red-600">
                     {{ errors.oldPassword[0] }}
@@ -82,6 +83,7 @@ const showModal = () => {
                       v-model="formFields.password"
                       type="password"
                       placeholder="New Password"
+                      required
                   />
                   <span v-if="errors.password" class="text-red-600">
                     {{ errors.password[0] }}

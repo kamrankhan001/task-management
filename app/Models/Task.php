@@ -29,6 +29,11 @@ class Task extends Model
         );
     }
 
+    protected function updatedAt(): Attribute
+    {
+        return Attribute::make(get: fn(string $value) => Carbon::make($value)->format('j M, Y'));
+    }
+
     protected function dueDate(): Attribute
     {
         return Attribute::make(

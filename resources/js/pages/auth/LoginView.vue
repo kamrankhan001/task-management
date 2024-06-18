@@ -1,8 +1,8 @@
 <script setup>
 import useSignin from "../../composables/auth/signin";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { FwbCard, FwbInput, FwbButton, FwbA, FwbToast } from "flowbite-vue";
+import { FwbCard, FwbInput, FwbButton } from "flowbite-vue";
 import { useToast } from "vue-toastification";
 
 const { signin, isLoading, error } = useSignin();
@@ -42,6 +42,12 @@ const login = async () => {
         errors.value.general = "An error occurred during login.";
     }
 };
+
+onMounted(()=> {
+    if(route.query.unauthorized) {
+        toast.error("You are not authorized");
+    }
+});
 </script>
 
 <template>

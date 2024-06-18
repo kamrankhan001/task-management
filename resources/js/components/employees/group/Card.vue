@@ -60,7 +60,7 @@ onMounted(() => {
                                 <fwb-list-group-item v-for="member in group.users" :key="member.id">{{ member.name }}</fwb-list-group-item>
                             </fwb-list-group>
                         </div>
-                        <p class="flex justify-between mb-2">
+                        <p class="flex justify-between mt-4">
                             <span class="block">
                                 Group Created
                             </span>
