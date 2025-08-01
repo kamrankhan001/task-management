@@ -152,4 +152,4 @@ This project is open-source and available under the [MIT license](LICENSE).
 
 ### 📫 Contact
 
-For suggestions, improvements, or collaborations, feel free to [reach out](mailto:youremail@example.com) or [connect on GitHub](https://github.com/your-username).
+For suggestions, improvements, or collaborations, feel free to [reach out](mailto:kamran.khan.developer@gmail.com) or [connect on website](https://kamrankhan.dev).
