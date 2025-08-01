@@ -22,7 +22,7 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z0-9\s.,!?()\'"-]+$/',
             'email' => 'required|string|email|max:255|unique:users,email,' . $this->route('user'),
             'password' => 'nullable|string|min:8',
             'picture' => 'nullable|image',

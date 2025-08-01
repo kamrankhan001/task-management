@@ -32,4 +32,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Group::class);
     }
 
+
+    public function isDemoUser(): bool
+    {
+        return $this->email === 'demomanager@kamrankhan.dev';
+    }
+
 }

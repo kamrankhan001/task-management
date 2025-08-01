@@ -22,8 +22,8 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:200|unique:tasks,title,' . $this->route('task'),
-            'description' => 'nullable|string',
+            'title' => 'required|string|max:200|regex:/^[a-zA-Z0-9\s.,!?()\'"-]+$/|unique:tasks,title,' . $this->route('task'),
+            'description' => 'nullable|string|regex:/^[a-zA-Z0-9\s.,!?()\'"-]+$/',
             'due_date' => 'required|date|after_or_equal:today',
             'priority' => 'in:high,medium,low',
             'status' => 'in:pending,review,complete',

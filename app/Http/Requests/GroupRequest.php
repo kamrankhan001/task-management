@@ -22,8 +22,8 @@ class GroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z0-9\s.,!?()\'"-]+$/',
+            'description' => 'nullable|string|regex:/^[a-zA-Z0-9\s.,!?()\'"-]+$/',
             'users' => 'nullable|array',
             'users.*' => 'exists:users,id',
         ];

@@ -17,7 +17,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 // Protected Routes
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function(){
     // Auth Routes
-    Route::patch('reset-password/{id}', [AuthController::class, 'resetPassword']);
+    Route::patch('reset-password/{id}', [AuthController::class, 'resetPassword'])->middleware('demo.user');
     
     // Dashboard
     Route::get('dashboard', [DashboardController::class, 'index']);

@@ -75,6 +75,10 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($id);
+            
+            if($user->isDemoUser()) {
+                return response()->json(['error' => 'Demo user cannot be updated'], 403);
+            }
 
             $data = $request->validated();
 
