@@ -10,8 +10,8 @@ const router = useRouter();
 const route = useRoute();
 
 const formFields = reactive({
-    email: "",
-    password: "",
+    email: "demomanager@kamrankhan.dev",
+    password: "demomanagerpassword",
 });
 
 const toast = useToast();
@@ -63,6 +63,7 @@ onMounted(()=> {
                                 placeholder="Enter your email"
                                 label="Email"
                                 type="email"
+                                readonly
                             />
                             <span v-if="errors.email" class="text-red-600">{{
                                 errors.email[0]
@@ -74,6 +75,7 @@ onMounted(()=> {
                                 placeholder="Enter your password"
                                 label="Password"
                                 type="password"
+                                readonly
                             />
                             <span v-if="errors.password" class="text-red-600">{{
                                 errors.password[0]
