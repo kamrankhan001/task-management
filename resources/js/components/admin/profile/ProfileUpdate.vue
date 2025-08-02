@@ -61,7 +61,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div>
+    <div v-if="formFields.email !== 'demomanager@kamrankhan.dev'">
         <form @submit.prevent="updateProfile">
             <div class="mb-5">
                 <fwb-input
@@ -91,5 +91,8 @@ onMounted(() => {
         <div class="mt-5 text-center">
             <ChangePassword :id="props.id"/>
         </div>
+    </div>
+    <div v-else class="text-center">
+        <p class="text-gray-500">You cannot update the demo user profile.</p>
     </div>
 </template>
